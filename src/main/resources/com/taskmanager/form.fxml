@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.taskmanager.controller.FormController"
+      spacing="15"
+      style="-fx-padding: 20;"
+      prefWidth="400"
+      stylesheets="@style.css">
+
+    <Label fx:id="labelTituloPagina"
+           text="Nova Tarefa"
+           styleClass="titulo-form"/>
+
+    <!-- Título -->
+    <VBox spacing="5">
+        <Label text="Título *"/>
+        <TextField fx:id="campoTitulo"
+                   promptText="Digite o título da tarefa"/>
+        <Label fx:id="erroTitulo"
+               styleClass="erro"
+               visible="false"/>
+    </VBox>
+
+    <!-- Descrição -->
+    <VBox spacing="5">
+        <Label text="Descrição"/>
+        <TextArea fx:id="campoDescricao"
+                  promptText="Digite a descrição (opcional)"
+                  prefRowCount="4"/>
+    </VBox>
+
+    <!-- Concluída -->
+    <CheckBox fx:id="checkConcluida"
+              text="Marcar como concluída"/>
+
+    <!-- Botões -->
+    <HBox spacing="10" alignment="CENTER_RIGHT">
+        <Button text="Cancelar"
+                onAction="#cancelar"
+                styleClass="btn-secundario"/>
+        <Button text="Salvar"
+                onAction="#salvar"
+                styleClass="btn-primario"/>
+    </HBox>
+
+</VBox>

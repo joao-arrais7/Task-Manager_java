@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.taskmanager.controller.MainController"
+            prefWidth="700" prefHeight="500"
+            stylesheets="@style.css">
+
+    <!-- TOPO -->
+    <top>
+        <VBox styleClass="header">
+            <Label text="📋 TaskManager" styleClass="titulo"/>
+        </VBox>
+    </top>
+
+    <!-- CENTRO - Tabela de tarefas -->
+    <center>
+        <VBox spacing="10" style="-fx-padding: 15;">
+
+            <!-- Barra de busca e botão novo -->
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <TextField fx:id="campoBusca"
+                           promptText="Buscar tarefa..."
+                           prefWidth="300"
+                           onKeyReleased="#buscarTarefa"/>
+                <Button text="🔍 Buscar"
+                        onAction="#buscarTarefa"
+                        styleClass="btn-secundario"/>
+                <Button text="➕ Nova Tarefa"
+                        onAction="#abrirFormNova"
+                        styleClass="btn-primario"/>
+            </HBox>
+
+            <!-- Tabela -->
+            <TableView fx:id="tabelaTarefas"
+                       VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="colId"
+                                 text="ID"
+                                 prefWidth="50"/>
+                    <TableColumn fx:id="colTitulo"
+                                 text="Título"
+                                 prefWidth="250"/>
+                    <TableColumn fx:id="colDescricao"
+                                 text="Descrição"
+                                 prefWidth="200"/>
+                    <TableColumn fx:id="colConcluida"
+                                 text="Concluída"
+                                 prefWidth="90"/>
+                    <TableColumn fx:id="colAcoes"
+                                 text="Ações"
+                                 prefWidth="150"/>
+                </columns>
+            </TableView>
+
+        </VBox>
+    </center>
+
+    <!-- RODAPÉ -->
+    <bottom>
+        <HBox styleClass="rodape" alignment="CENTER">
+            <Label fx:id="labelStatus" text="Total de tarefas: 0"/>
+        </HBox>
+    </bottom>
+
+</BorderPane>
