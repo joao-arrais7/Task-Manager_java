@@ -1,42 +1,76 @@
-\# 📋 Task Manager (Gerenciador de Tarefas)
+\# 📋 Task Manager (Gerenciador de Tarefas — Versão GUI \& JDBC)
 
 
 
 !\[Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge\&logo=openjdk\&logoColor=white)
 
-!\[Status](https://img.shields.io/badge/Status-Em\_Desenvolvimento-Green?style=for-the-badge)
+!\[JavaFX](https://img.shields.io/badge/JavaFX-🚀-blue?style=for-the-badge)
+
+!\[JUnit 5](https://img.shields.io/badge/JUnit\_5-✅-red?style=for-the-badge)
+
+!\[Status](https://img.shields.io/badge/Status-Concluído-Green?style=for-the-badge)
 
 
 
-Uma aplicação em Java desenvolvida para rodar direto no terminal, projetada para gerenciar tarefas diárias. O projeto foi estruturado aplicando conceitos fundamentais da Programação Orientada a Objetos (POO), como encapsulamento e manipulação de coleções de dados (Lists).
+O \*\*TaskManager\*\* é uma aplicação desktop robusta desenvolvida em Java. Evoluído de uma versão de console, o sistema agora conta com uma interface gráfica amigável (GUI), persistência de dados em banco relacional, arquitetura escalável utilizando Generics e cobertura de testes automatizados.
 
 
 
 \## 🎯 Objetivo do Projeto
 
-O Task Manager foi criado para facilitar a organização de rotinas, permitindo que o usuário tenha total controle sobre suas atividades através de um fluxo interativo no console, ideal para consolidação de lógica backend.
+Consolidar conceitos avançados do ecossistema Java, transformando uma aplicação simples em um sistema real de mercado: estruturado, testável, persistente e com foco na experiência do usuário.
 
 
 
-\## ✨ Funcionalidades principais
-
-\- Criar Tarefas:\*\* Adicionar novas atividades com título e descrição.
-
-\- Listar Tarefas:\*\* Visualizar de forma organizada todas as demandas registradas no terminal.
-
-\- Atualizar Status:\*\* Modificar o progresso da tarefa (Ex: Pendente para Concluída).
-
-\- Excluir Tarefas:\*\* Remover itens do painel de controle.
+\## 🛠️ Tecnologias e Conceitos Aplicados
 
 
 
-\## 🛠️ Tecnologias Utilizadas
+\### 1. Interface Gráfica (JavaFX \& FXML)
 
-\- Linguagem:\*\* Java (JDK 17 ou superior)
+\* \*\*Design Desacoplado:\*\* Telas desenhadas em arquivos `.fxml` com o auxílio do \*\*Scene Builder\*\*, separando a lógica de apresentação da lógica de negócio através de `Controllers` (`@FXML`).
 
-\- Interface:\*\* Terminal / Prompt de Comando (Console)
+\* \*\*Componentes Utilizados:\*\* Estruturas de layout integradas (`VBox`, `HBox`, `GridPane`, `BorderPane`) para renderizar componentes como `TableView`, `TextField`, `TextArea` e manipulação de eventos via `setOnAction()`.
 
-\- Armazenamento:\*\* Em memória (Collections/ArrayList)
+\* \*\*Estilização:\*\* Visual customizado utilizando folhas de estilo `.css`.
+
+
+
+\### 2. Persistência de Dados (JDBC)
+
+\* \*\*Isolamento de Camadas:\*\* Implementação do padrão \*\*DAO (Data Access Object)\*\* através da classe `TarefaDAO` para isolar as operações de banco de dados.
+
+\* \*\*Segurança:\*\* Uso rigoroso de `PreparedStatement` e `ResultSet` para manipulação de dados, mitigando completamente vulnerabilidades de \*\*SQL Injection\*\*.
+
+\* \*\*Integridade:\*\* Controle transacional manual utilizando `commit()` e `rollback()` para garantir a atomicidade das operações.
+
+
+
+\### 3. Generics e Reutilização de Código
+
+\* Criação de estruturas genéricas para manipulação de coleções de tarefas, aplicando conceitos de wildcards (`?`, `? extends T`, `? super T`) para garantir máxima flexibilidade e reaproveitamento do código backend.
+
+
+
+\### 4. Testes Automatizados (JUnit 5)
+
+\* Implementação de rotinas de teste automatizadas para validação de regras de negócio.
+
+\* \*\*Escopo de Testes:\*\* Criação de tarefas, fluxos de conclusão e validação do ciclo de vida do DAO utilizando banco de dados em memória para testes isolados.
+
+\* \*\*Estrutura:\*\* Uso das diretivas `@Test`, `@BeforeEach` e `@AfterEach` para setup e tear down do ambiente de testes.
+
+
+
+\## ✨ Funcionalidades
+
+\* \[x] \*\*Interface Visual Completa:\*\* Listagem de tarefas em tabelas interativas.
+
+\* \[x] \*\*CRUD Completo:\*\* Cadastro, edição, remoção e atualização de status de tarefas diretamente na tela.
+
+\* \[x] \*\*Confirmações de Segurança:\*\* Telas de alerta antes de exclusões críticas.
+
+\* \[x] \*\*Persistência Real:\*\* Seus dados ficam salvos de forma permanente no banco de dados.
 
 
 
@@ -46,17 +80,17 @@ O Task Manager foi criado para facilitar a organização de rotinas, permitindo 
 
 \### Pré-requisitos
 
-Para rodar a aplicação, você precisa ter instalado em sua máquina:
+\* \*\*Java JDK 17\*\* (ou superior)
 
-\- \[Java JDK](https://www.oracle.com/java/technologies/downloads/) (Versão recomendada: 17+)
+\* \*\*JavaFX SDK\*\* configurado na sua IDE ou via gerenciador de dependências (Maven/Gradle)
 
-\- Git instalado (para clonar)
+\* Banco de Dados Relacional (Configurado na classe `Conexao.java`)
 
 
 
-\### Passo a Passo para execução no Git Bash
+\### Execução local
 
-1\. Clone o repositório:\*\*
+1\. Clone o repositório:
 
 &#x20;  ```bash
 
@@ -64,53 +98,45 @@ Para rodar a aplicação, você precisa ter instalado em sua máquina:
 
 
 
-2\. Navegue até a pasta do projeto:
+2\. Abra o projeto na sua IDE de preferência (IntelliJ IDEA ou Eclipse) com suporte a JavaFX configurado.
 
 
 
-Bash
-
-cd Task\_Manager\_Java
+3\. Certifique-se de que a biblioteca do Driver JDBC está inclusa no Classpath.
 
 
 
-3\. Compile os arquivos Java:
+4\. Execute a classe MainApplication.java.
 
 
 
-Bash
-
-javac \*.java
-
-Execute a aplicação:
-
-
-
-Bash
-
-java Main
-
-📁 Estrutura do Repositório
-
-O projeto mantém uma estrutura simples e direta:
-
-
-
-Plaintext
+📁 Arquitetura do Projeto
 
 Task\_Manager\_Java/
 
-├── Main.java             # Ponto de entrada da aplicação e menu interativo
+├── src/
 
-├── Task.java             # Classe modelo que representa a Tarefa (POO)
+│   ├── main/
 
-├── .gitignore            # Arquivos ignorados pelo Git
+│   │   ├── java/
 
-└── README.md             # Documentação do repositório
+│   │   │   └── controller/     # Controladores das telas (.java)
+
+│   │   │   └── dao/            # Camada de persistência (TarefaDAO.java, Conexao.java)
+
+│   │   │   └── model/          # Classes de entidade (Tarefa.java)
+
+│   │   │   └── MainApplication # Ponto de entrada do JavaFX
+
+│   │   └── resources/          # Arquivos visuais (.fxml e .css)
+
+│   └── test/
+
+│       └── java/               # Testes automatizados com JUnit 5
 
 
 
 ✒️ Autor
 
-Desenvolvido com ☕ por João Arrais.
+Desenvolvido por João Arrais.
 
