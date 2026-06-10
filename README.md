@@ -124,4 +124,3 @@ To configure locally, rename `config.properties.example` to
 
 ---
 
-## 🏗️ Project Structure
