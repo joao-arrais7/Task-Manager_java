@@ -1,171 +1,127 @@
-# 📋 TaskManager — Gerenciador de Tarefas
+# 📋 TaskManager
 
-## 📌 Descrição
-O TaskManager é uma aplicação desktop desenvolvida em Java com interface
-gráfica JavaFX, persistência de dados em banco MySQL via JDBC, estruturas
-genéricas com Generics e testes automatizados com JUnit 5.
+![Java](https://img.shields.io/badge/Java-JDK%2025-orange)
+![JavaFX](https://img.shields.io/badge/JavaFX-25-blue)
+![MySQL](https://img.shields.io/badge/MySQL-8.0-blue)
+![Maven](https://img.shields.io/badge/Maven-3.x-red)
+![JUnit](https://img.shields.io/badge/JUnit-5.10.2-green)
 
-Este projeto foi desenvolvido como entrega da Unidade 5 | Capítulo 1 do
-módulo intermediário do curso Capacita iRede — Residência em TIC 20.
-
----
-
-## 👩‍💻 Tecnologias Utilizadas
-
-| Tecnologia | Versão | Finalidade |
-|-----------|--------|-----------|
-| Java | JDK 25 | Linguagem principal |
-| JavaFX | 25 | Interface gráfica |
-| MySQL | 8.0 | Banco de dados |
-| JDBC | — | Conexão com banco |
-| JUnit | 5.10.2 | Testes automatizados |
-| Maven | 3.x | Gerenciamento de dependências |
+A desktop task management application built with Java and JavaFX.
 
 ---
 
-## 🏗️ Estrutura do Projeto
-TaskManager/
+## 📌 About
+
+TaskManager is a personal project developed to practice and apply
+core Java concepts including graphical interfaces, database persistence,
+generic programming and automated testing.
+
+---
+
+## 🚀 Technologies
+
+| Technology | Version |
+|-----------|---------|
+| Java | JDK 25 |
+| JavaFX | 25 |
+| MySQL | 8.0 |
+| Maven | 3.x |
+| JUnit | 5.10.2 |
+
+---
+
+## ✨ Features
+
+- ✅ List all tasks
+- ✅ Add new task
+- ✅ Edit existing task
+- ✅ Delete task with confirmation
+- ✅ Mark task as completed
+- ✅ Search task by title
+- ✅ Task status counterTaskManager/
+
+ ---
+
+## 🏗️ Project Structure
 ├── src/
 │   ├── main/
 │   │   ├── java/com/taskmanager/
-│   │   │   ├── MainApplication.java      # Ponto de entrada JavaFX
+│   │   │   ├── MainApplication.java
 │   │   │   ├── model/
-│   │   │   │   └── Tarefa.java           # Entidade principal
+│   │   │   │   └── Tarefa.java
 │   │   │   ├── db/
-│   │   │   │   └── Conexao.java          # Gerencia conexão JDBC
+│   │   │   │   └── Conexao.java
 │   │   │   ├── dao/
-│   │   │   │   ├── GenericDAO.java       # Interface genérica (Generics)
-│   │   │   │   └── TarefaDAO.java        # CRUD completo
+│   │   │   │   ├── GenericDAO.java
+│   │   │   │   └── TarefaDAO.java
 │   │   │   └── controller/
-│   │   │       ├── MainController.java   # Tela principal
-│   │   │       └── FormController.java   # Tela de cadastro/edição
+│   │   │       ├── MainController.java
+│   │   │       └── FormController.java
 │   │   └── resources/com/taskmanager/
-│   │       ├── main.fxml                 # Layout tela principal
-│   │       ├── form.fxml                 # Layout formulário
-│   │       └── style.css                 # Estilização
+│   │       ├── main.fxml
+│   │       ├── form.fxml
+│   │       └── style.css
 │   └── test/java/com/taskmanager/
-│       ├── TarefaTest.java               # Testes da entidade
-│       ├── TarefaDAOTest.java            # Testes do DAO
-│       └── TarefaDAOTestHelper.java      # Helper para testes
-├── pom.xml                               # Dependências Maven
-└── README.md                             # Este arquivo
+│       ├── TarefaTest.java
+│       ├── TarefaDAOTest.java
+│       └── TarefaDAOTestHelper.java
+├── pom.xml
+└── README.md---
 
----
+## ⚙️ Getting Started
 
-## 🧩 Conceitos Aplicados
+### Prerequisites
+- JDK 25
+- MySQL 8.0
+- Maven 3.x
 
-### 1. Generics
-- Interface `GenericDAO<T>` com métodos genéricos: `inserir`, `atualizar`,
-  `deletar`, `buscarPorId` e `listarTodos`
-- `TarefaDAO` implementa `GenericDAO<Tarefa>` para operações específicas
-
-### 2. JavaFX — Interface Gráfica
-- `MainApplication` estende `Application` e inicia a aplicação
-- **Tela Principal:** lista todas as tarefas com opções de marcar, editar
-  e remover
-- **Tela de Formulário:** cadastro e edição de tarefas com validação
-- Componentes usados: `TableView`, `TextField`, `TextArea`, `CheckBox`,
-  `Button`, `Label`
-- Layouts: `BorderPane`, `VBox`, `HBox`
-- Separação entre lógica e visual com arquivos `.fxml`
-- Estilização com arquivo `.css`
-
-### 3. JDBC — Banco de Dados
-- Conexão com MySQL via `DriverManager`
-- Operações CRUD com `PreparedStatement` e `ResultSet`
-- Proteção contra SQL Injection com `PreparedStatement`
-- Padrão DAO para isolar a persistência
-- Tabela `tarefas` com campos: `id`, `titulo`, `descricao`, `concluida`
-
-### 4. JUnit 5 — Testes Automatizados
-- Testes unitários da classe `Tarefa`
-- Testes do DAO usando SQLite em memória
-- Anotações: `@Test`, `@BeforeEach`, `@AfterEach`, `@DisplayName`
-- Assertions: `assertEquals`, `assertTrue`, `assertFalse`, `assertNull`,
-  `assertNotNull`, `assertThrows`
-
----
-
-## 🗄️ Configuração do Banco de Dados
-
-### 1. Criar o banco
-```sql
-CREATE DATABASE IF NOT EXISTS taskmanager_db
-    CHARACTER SET utf8mb4
-    COLLATE utf8mb4_unicode_ci;
-```
-
-### 2. A tabela é criada automaticamente ao rodar o projeto
-```sql
-CREATE TABLE IF NOT EXISTS tarefas (
-    id        INT PRIMARY KEY AUTO_INCREMENT,
-    titulo    VARCHAR(100) NOT NULL,
-    descricao TEXT,
-    concluida BOOLEAN NOT NULL DEFAULT FALSE
-);
-```
-
----
-
-## ⚙️ Como Configurar e Rodar
-
-### Pré-requisitos
-- JDK 25 instalado
-- MySQL 8.0 rodando
-- Maven instalado (ou usar o embutido do IntelliJ)
-
-### Passo 1 — Clonar/Extrair o projeto
+### Clone the repository
 ```bash
-# Extraia o ZIP em uma pasta de sua preferência
+git clone https://github.com/joao-arrais7/Task-Manager_java.git
+cd Task-Manager_java
 ```
 
-### Passo 2 — Configurar a senha do banco
-Abra o arquivo:Altere a linha:
-```java
-private static final String SENHA = "sua_senha_aqui";
+### Configure database credentials
+Rename `config.properties.example` to `config.properties` and fill in:
+```properties
+db.url=jdbc:mysql://localhost:3306/taskmanager_db?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+db.usuario=root
+db.senha=your_password_here
 ```
 
-### Passo 3 — Criar o banco de dados
+### Create the database
 ```sql
 CREATE DATABASE IF NOT EXISTS taskmanager_db;
 ```
 
-### Passo 4 — Rodar o projeto
+### Run the application
 ```bash
 mvn javafx:run
 ```
 
-### Passo 5 — Rodar os testes
+### Run the tests
 ```bash
 mvn test
 ```
 
 ---
 
-## 🖥️ Funcionalidades
+## ⚠️ Security
 
-- ✅ Listar todas as tarefas
-- ✅ Adicionar nova tarefa
-- ✅ Editar tarefa existente
-- ✅ Remover tarefa com confirmação
-- ✅ Marcar tarefa como concluída
-- ✅ Buscar tarefa por título
-- ✅ Contador de tarefas no rodapé
+Database credentials are stored in `config.properties` which is
+**not committed to this repository**.
+
+To configure locally, rename `config.properties.example` to
+`config.properties` and fill in your credentials.
 
 ---
 
-## 🧪 Testes Implementados
+## 👤 Author
 
-| Teste | Descrição |
-|-------|-----------|
-| `deveCriarTarefaComTituloCorreto` | Verifica criação da tarefa |
-| `deveMarcarTarefaComoConcluida` | Verifica conclusão |
-| `deveAtualizarTitulo` | Verifica atualização |
-| `deveInserirTarefa` | Verifica inserção no banco |
-| `deveBuscarTarefaPorId` | Verifica busca por ID |
-| `deveBuscarTarefaPorTitulo` | Verifica busca por título |
-| `deveDeletarTarefa` | Verifica remoção |
-| `deveRetornarListaVazia` | Verifica listagem vazia |
+**João Paulo Da Cunha Arrais**
+
+[![GitHub](https://img.shields.io/badge/GitHub-joao--arrais7-black?logo=github)](https://github.com/joao-arrais7)
 
 ---
 
+## 🏗️ Project Structure
