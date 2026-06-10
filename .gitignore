@@ -1,8 +1,11 @@
+# Credenciais sensíveis
+src/main/resources/com/taskmanager/config.properties
+
+# Maven
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
-.kotlin
 
 ### IntelliJ IDEA ###
 .idea/modules.xml

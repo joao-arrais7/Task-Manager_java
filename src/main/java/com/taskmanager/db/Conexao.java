@@ -1,25 +1,51 @@
 package com.taskmanager.db;
 
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Properties;
 
 public class Conexao {
 
-    // ⚠️ Altere usuário e senha conforme seu MySQL
-    private static final String URL    = "jdbc:mysql://localhost:3306/taskmanager_db?useSSL=false&serverTimezone=UTC";
-    private static final String USUARIO = "root";
-    private static final String SENHA   = "0208";
-
     private static Connection conexao;
+    private static String url;
+    private static String usuario;
+    private static String senha;
 
-    // Impede instanciação
+    static {
+        try (InputStream input = Conexao.class
+                .getClassLoader()
+                .getResourceAsStream("com/taskmanager/config.properties")) {
+
+            if (input == null) {
+                throw new RuntimeException(
+                        "Arquivo config.properties não encontrado! " +
+                                "Renomeie o config.properties.example para config.properties " +
+                                "e preencha com suas credenciais."
+                );
+            }
+
+            Properties prop = new Properties();
+            prop.load(input);
+
+            url      = prop.getProperty("db.url");
+            usuario  = prop.getProperty("db.usuario");
+            senha    = prop.getProperty("db.senha");
+
+        } catch (RuntimeException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao carregar config.properties", e);
+        }
+    }
+
     private Conexao() {}
 
     public static Connection getConexao() {
         try {
             if (conexao == null || conexao.isClosed()) {
-                conexao = DriverManager.getConnection(URL, USUARIO, SENHA);
+                conexao = DriverManager.getConnection(url, usuario, senha);
                 System.out.println("✅ Conectado ao banco de dados!");
             }
         } catch (SQLException e) {
